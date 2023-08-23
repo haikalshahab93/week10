@@ -9,10 +9,12 @@ const app = express()
 app.use(express.json())
 
 let db
+let userDao
 (async () =>{
   try{
     const client = await  new MongoClient('mongodb://127.0.0.1:27017').connect()
     db = client.db('revou') // databasenya
+    userDao = new userDao(db)
   }catch(error){
       console.log(error,"error")
   }
